@@ -4,7 +4,7 @@
 	"description": "\"a library management application to manage members and borrowing of books by members.\"",
 	"main": "dist/index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"dev": "tsx watch src/index.ts"
 	},
 	"author": "ömer toraman",
 	"license": "ISC",
@@ -13,6 +13,12 @@
 	},
 	"type": "module",
 	"devDependencies": {
-		"@types/express": "^4.17.21"
+		"@eslint/js": "^9.11.1",
+		"@types/express": "^4.17.21",
+		"eslint": "^9.11.1",
+		"globals": "^15.9.0",
+		"tsx": "^4.19.1",
+		"typescript": "^5.6.2",
+		"typescript-eslint": "^8.7.0"
 	}
 }
