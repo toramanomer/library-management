@@ -6,15 +6,20 @@
 		"lib": [
 			"es2023"
 		],
-		"module": "node16",
+		"module": "ESNext",
 		"target": "es2022",
 		"strict": true,
 		"strictNullChecks": true,
 		"noImplicitAny": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"moduleResolution": "node16",
+		"moduleResolution": "node",
 		"rootDir": "./src",
 		"outDir": "./dist",
+		"paths": {
+			"@users/*": [
+				"./src/users/*"
+			]
+		},
 	}
 }
