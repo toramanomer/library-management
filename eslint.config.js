@@ -19,6 +19,7 @@ export default [
 			'no-trailing-spaces': 'error',
 			'object-curly-spacing': ['error', 'always'],
 			'comma-spacing': ['error', { 'before': false, 'after': true }],
+			'comma-dangle': ['error', 'never']
 		}
 	}
 ]
