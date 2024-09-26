@@ -10,7 +10,7 @@ import { AppException } from './core/exceptions'
 const app = express()
 app.use(express.json())
 
-await db.sequelize.sync({ force: true })
+await db.sequelize.sync()
 
 
 app.use('/users', userRouter)
