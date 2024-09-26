@@ -1,13 +1,9 @@
 import type { Request, Response } from 'express'
 import { z } from 'zod'
 import { db } from '../../models'
+import { nonEmptyString } from '../../core/schemas'
 
-export const createUserSchema = z.object({
-	name: z
-		.string({ errorMap: () => ({ message: 'Name cannot be empty.' }) })
-		.trim()
-		.min(1)
-})
+export const createUserSchema = z.object({ name: nonEmptyString })
 type CreateUserSchema = z.infer<typeof createUserSchema>
 
 export const createUser = async (

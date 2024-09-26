@@ -2,9 +2,11 @@ import {
 	DataTypes,
 	InferAttributes,
 	InferCreationAttributes,
-	Model
+	Model,
+	NonAttribute
 } from 'sequelize'
 import { sequelize } from '../config/database'
+import { Borrowing } from './borrowing.model'
 
 export class User extends Model<
 	InferAttributes<User>,
@@ -15,6 +17,9 @@ export class User extends Model<
 
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
+
+	declare books: NonAttribute<Borrowing[]>
+
 }
 
 User.init(

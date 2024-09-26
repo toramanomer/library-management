@@ -33,7 +33,8 @@ export const returnBook = async (
 	await db.sequelize.transaction(async transaction => {
 		const borrowing = await db.Borrowing.findOne({
 			where: { userId, bookId, returnedAt: null },
-			transaction
+			transaction,
+			lock: true
 		})
 		if (!borrowing)
 			throw new AppException('No active borrowing record found for this user and book', 404)
@@ -45,7 +46,7 @@ export const returnBook = async (
 			db.Borrowing.update({
 				returnedAt: new Date(),
 				userScore: score
-			}, { where: { userId, bookId, returnedAt: null }, transaction }),
+			}, { where: { userId, bookId }, transaction }),
 			db.Book.update(
 				{
 					isAvailable: true,
