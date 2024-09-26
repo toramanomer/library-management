@@ -46,12 +46,8 @@ Book.init(
 			allowNull: false
 		},
 		score: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.VIRTUAL,
 			get() {
-				console.log({
-					reviewCount: this.reviewCount,
-					scoreCount: this.scoreCount
-				})
 				if (this.reviewCount === 0) return -1
 				return Number((this.scoreCount / this.reviewCount).toFixed(2))
 			}

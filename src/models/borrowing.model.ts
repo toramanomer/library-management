@@ -11,11 +11,12 @@ import { Book } from './book.model'
 
 export class Borrowing extends Model<
 	InferAttributes<Borrowing>,
-	InferCreationAttributes<Borrowing, { omit: 'createdAt' | 'updatedAt' | 'score' | 'returnedAt'  }>
+	InferCreationAttributes<Borrowing, { omit: 'createdAt' | 'updatedAt' | 'userScore' | 'returnedAt'  }>
 > {
 	declare userId: ForeignKey<User['id']>
 	declare bookId: ForeignKey<Book['id']>
-	declare score: string
+	declare name: string
+	declare userScore: string
 
 	declare returnedAt: Date | null
 	declare readonly createdAt: Date
@@ -24,7 +25,8 @@ export class Borrowing extends Model<
 
 Borrowing.init(
 	{
-		score: { type: DataTypes.STRING },
+		userScore: { type: DataTypes.STRING },
+		name: { type: DataTypes.STRING, allowNull: false },
 		returnedAt: { type: DataTypes.DATE },
 		createdAt: {
 			type: DataTypes.DATE,
@@ -37,8 +39,3 @@ Borrowing.init(
 	},
 	{ sequelize }
 )
-
-User.hasMany(Borrowing, { foreignKey: 'userId' })
-Book.hasMany(Borrowing, { foreignKey: 'bookId' })
-Borrowing.belongsTo(User, { foreignKey: 'userId' })
-Borrowing.belongsTo(Book, { foreignKey: 'bookId' })
