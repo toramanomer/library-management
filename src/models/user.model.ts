@@ -13,8 +13,8 @@ export class User extends Model<
 	declare id: number
 	declare name: string
 
-	declare createdAt: Date
-	declare updatedAt: Date
+	declare readonly createdAt: Date
+	declare readonly updatedAt: Date
 }
 
 User.init(
@@ -37,8 +37,5 @@ User.init(
 			allowNull: false
 		}
 	},
-	{
-		sequelize,
-		tableName: 'Users'
-	}
+	{ sequelize }
 )
