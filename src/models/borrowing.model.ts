@@ -16,7 +16,7 @@ export class Borrowing extends Model<
 	declare userId: ForeignKey<User['id']>
 	declare bookId: ForeignKey<Book['id']>
 	declare name: string
-	declare userScore: string
+	declare userScore: number
 
 	declare returnedAt: Date | null
 	declare readonly createdAt: Date
@@ -25,7 +25,7 @@ export class Borrowing extends Model<
 
 Borrowing.init(
 	{
-		userScore: { type: DataTypes.STRING },
+		userScore: { type: DataTypes.INTEGER },
 		name: { type: DataTypes.STRING, allowNull: false },
 		returnedAt: { type: DataTypes.DATE },
 		createdAt: {

@@ -5,9 +5,6 @@ export const listUsers = async (
 	request: Request,
 	response: Response
 ) => {
-	const users = await db.User.findAll({
-		limit: 20,
-		attributes: ['id', 'name']
-	})
+	const users = await db.User.findAll({ attributes: ['id', 'name'] })
 	response.json(users)
 }

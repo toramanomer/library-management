@@ -1,17 +1,30 @@
-import type { Request, Response } from 'express'
+import { type Request, type Response } from 'express'
 import { z } from 'zod'
 import { db } from '../../models'
 import { positiveInt } from '../../core/schemas'
 import { AppException } from '../../core/exceptions'
 
-export const returnBookSchema = z.object({
-	userId: positiveInt,
-	bookId: positiveInt
-})
-type ReturnBookSchema = z.infer<typeof returnBookSchema>
+export const returnBookSchema = {
+	body: z.object({
+		score: z
+			.number({
+				invalid_type_error: 'Score must be a number',
+				required_error: 'Score is required'
+			})
+			.int('Score must be an integer')
+			.min(1, 'Score cannot be less than 1')
+			.max(10, 'Score cannot be greater than 10')
+	}),
+	params: z.object({
+		userId: positiveInt,
+		bookId: positiveInt
+	})
+}
+type ReturnBookSchemaParams = z.infer<typeof returnBookSchema['params']>
+type ReturnBookSchemaBody = z.infer<typeof returnBookSchema['body']>
 
 export const returnBook = async (
-	request: Request<ReturnBookSchema>,
+	request: Request<ReturnBookSchemaParams, unknown, ReturnBookSchemaBody>,
 	response: Response
 ) => {
 	const { userId, bookId } = request.params
