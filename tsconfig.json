@@ -16,10 +16,5 @@
 		"moduleResolution": "node",
 		"rootDir": "./src",
 		"outDir": "./dist",
-		"paths": {
-			"@users/*": [
-				"./src/users/*"
-			]
-		},
 	}
 }
