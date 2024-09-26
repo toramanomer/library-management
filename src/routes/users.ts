@@ -10,7 +10,7 @@ import { returnBook } from '../handlers/users/return-book'
 export const userRouter = Router()
 
 userRouter.use('/:userId/borrow/:bookId', processRequestParams(borrowBookSchema), borrowBook)
-userRouter.use('/users/:userId/return/:bookId', returnBook)
+userRouter.use('/:userId/return/:bookId', returnBook)
 userRouter.get('/:id', processRequestParams(getUserSchema), getUser)
 userRouter.post('/', processRequestBody(createUserSchema), createUser)
 userRouter.get('/', listUsers)
